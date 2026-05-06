@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { BrowserRouter, Routes, Route, Link, useParams, useNavigate } from 'react-router-dom';
 import { GoogleMap, useJsApiLoader, Marker, MarkerF, InfoWindowF } from '@react-google-maps/api';
 import { QRCodeSVG } from 'qrcode.react';
-import { FiMenu, FiX, FiSearch, FiLogOut, FiDownload, FiFileText, FiMail, FiLinkedin, FiInstagram, FiInfo, FiEye, FiEyeOff, FiCheck, FiArrowLeft, FiMapPin, FiCalendar } from 'react-icons/fi';
+import { FiMenu, FiX, FiSearch, FiLogOut, FiDownload, FiFileText, FiMail, FiLinkedin, FiInstagram, FiInfo, FiEye, FiEyeOff, FiCheck, FiArrowLeft } from 'react-icons/fi';
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip, LineChart, Line, XAxis, YAxis, CartesianGrid, AreaChart, Area } from 'recharts';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
@@ -22,25 +22,23 @@ const IconEye = FiEye as any;
 const IconEyeOff = FiEyeOff as any;
 const IconCheck = FiCheck as any;
 const IconArrowLeft = FiArrowLeft as any;
-const IconMapPin = FiMapPin as any;
-const IconCalendar = FiCalendar as any;
 
 const mapContainerStyle = { width: '100%', height: '100%', borderRadius: '1rem' };
 const center = { lat: -23.532, lng: -46.791 };
-const darkMapStyle = [{ elementType: "geometry", stylers: [{ color: "#242f3e" }] },{ elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },{ elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },{ featureType: "water", stylers: [{ color: "#17263c" }] },{ featureType: "poi", stylers: [{ visibility: "off" }] },{ featureType: "road", elementType: "geometry", stylers: [{ color: "#38414e" }] }];
+const darkMapStyle = [{ elementType: "geometry", stylers: [{ color: "#242f3e" }] }, { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] }, { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] }, { featureType: "water", stylers: [{ color: "#17263c" }] }, { featureType: "poi", stylers: [{ visibility: "off" }] }, { featureType: "road", elementType: "geometry", stylers: [{ color: "#38414e" }] }];
 
 const MOCK_OBRAS = [
-  { 
+  {
     id: 1, nome: "Residencial Aurora", lat: -23.53, lng: -46.79, progresso: 68, construtora: "Construtora Alfa", status: "Em Andamento", risco: "No prazo", roi: 22,
     fotos: ["https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800", "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800", "https://images.unsplash.com/photo-1590486803833-1c5dc8ddd4c8?w=800"],
     evolucao: [{ mes: "Jan", progresso: 10 }, { mes: "Fev", progresso: 25 }, { mes: "Mar", progresso: 45 }, { mes: "Abr", progresso: 68 }]
   },
-  { 
+  {
     id: 2, nome: "Parque das Nações", lat: -23.525, lng: -46.77, progresso: 34, construtora: "Beta Engenharia", status: "Em Andamento", risco: "Atrasada", roi: 8,
     fotos: ["https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800", "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=800"],
     evolucao: [{ mes: "Jan", progresso: 5 }, { mes: "Fev", progresso: 15 }, { mes: "Mar", progresso: 25 }, { mes: "Abr", progresso: 34 }]
   },
-  { 
+  {
     id: 3, nome: "Edifício Central", lat: -23.54, lng: -46.80, progresso: 100, construtora: "Construtora Alfa", status: "Concluída", risco: "No prazo", roi: 18,
     fotos: ["https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800", "https://images.unsplash.com/photo-1428366890462-dd4baecf492b?w=800"],
     evolucao: [{ mes: "Jan", progresso: 40 }, { mes: "Fev", progresso: 70 }, { mes: "Mar", progresso: 90 }, { mes: "Abr", progresso: 100 }]
@@ -48,36 +46,36 @@ const MOCK_OBRAS = [
 ];
 
 const EQUIPE = [
-  { 
-    nome: "Lucas Pinheiro de Souza", 
-    cargo: "Desenvolvedor Full Stack", 
-    foto: "/team/lucas.jpg", 
+  {
+    nome: "Lucas Pinheiro de Souza",
+    cargo: "Desenvolvedor Full Stack",
+    foto: "/team/lucas.jpg",
     linkedin: "https://linkedin.com/in/lucas-pinheiro-souza",
     instagram: "https://instagram.com/xlucasx.pds",
     email: "mailto:xlucasx.pds@gmail.com"
   },
-  { 
-    nome: "Giovanna Braz Ghermacovski", 
-    cargo: "Desenvolvedora Mobile", 
+  {
+    nome: "Giovanna Braz Ghermacovski",
+    cargo: "Desenvolvedora Mobile",
     foto: "/team/giovanna.jpg",
-    linkedin: "https://www.linkedin.com/in/giovanna-braz-ghermacovski", 
-    instagram: "https://instagram.com/gibrazxw_", 
+    linkedin: "https://www.linkedin.com/in/giovanna-braz-ghermacovski",
+    instagram: "https://instagram.com/gibrazxw_",
     email: "mailto:gibraz.2006@gmail.com"
   },
-  { 
-    nome: "Anne Marie Lambert", 
-    cargo: "Frontend Developer", 
+  {
+    nome: "Anne Marie Lambert",
+    cargo: "Frontend Developer",
     foto: "/team/anne.jpg",
-    linkedin: "https://www.linkedin.com/in/anne-marie-lambert", 
-    instagram: "https://instagram.com/amarie_dx", 
+    linkedin: "https://www.linkedin.com/in/anne-marie-lambert",
+    instagram: "https://instagram.com/amarie_dx",
     email: "mailto:annemlambert82@gmail.com"
   },
-  { 
-    nome: "Guilherme Ferreira de Sousa", 
-    cargo: "Database Architect", 
+  {
+    nome: "Guilherme Ferreira de Sousa",
+    cargo: "Database Architect",
     foto: "/team/guilherme.jpg",
-    linkedin: "https://www.linkedin.com/in/guilherme-ferreira", 
-    instagram: "https://instagram.com/gferre.ira", 
+    linkedin: "https://www.linkedin.com/in/guilherme-ferreira",
+    instagram: "https://instagram.com/gferre.ira",
     email: "mailto:guilfs06@gmail.com"
   }
 ];
@@ -85,7 +83,7 @@ const EQUIPE = [
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  
+
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener('scroll', handleScroll);
@@ -93,11 +91,10 @@ function Navbar() {
   }, []);
 
   return (
-    <header className={`fixed w-full z-50 transition-all duration-300 ${
-      scrolled 
-        ? 'glass border-b border-zinc-800' 
-        : 'bg-[#050505]/95 backdrop-blur-md border-b border-zinc-900'
-    }`}>
+    <header className={`fixed w-full z-50 transition-all duration-300 ${scrolled
+      ? 'glass border-b border-zinc-800'
+      : 'bg-[#050505]/95 backdrop-blur-md border-b border-zinc-900'
+      }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <Link to="/" className="text-3xl font-bold tracking-tight">Construct<span className="text-neon-blue">View</span></Link>
@@ -132,7 +129,7 @@ function Navbar() {
 
 function PageTransition({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
-  
+
   useEffect(() => {
     window.scrollTo(0, 0);
     const timer = setTimeout(() => setLoading(false), 400);
@@ -193,7 +190,7 @@ function Home() {
   const [filtroMapa, setFiltroMapa] = useState('Todas');
   const navigate = useNavigate();
   const { isLoaded } = useJsApiLoader({ googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_KEY || "" });
-  
+
   useEffect(() => {
     fetch('http://localhost:3000/api/home/numeros-gerais')
       .then(res => res.json())
@@ -207,16 +204,16 @@ function Home() {
     <PageTransition>
       <div className="min-h-screen pt-28 p-4 md:p-8">
         <section className="max-w-6xl mx-auto mb-20">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }} 
-            animate={{ opacity: 1, y: 0 }} 
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="glass rounded-[3rem] p-8 md:p-20 relative overflow-hidden shadow-[0_0_80px_rgba(0,0,0,0.6)] border border-zinc-800/80"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/15 via-transparent to-transparent pointer-events-none"></div>
             <div className="absolute top-0 right-0 w-96 h-96 bg-neon-blue/10 rounded-full blur-[100px] pointer-events-none mix-blend-screen"></div>
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-neon-green/10 rounded-full blur-[100px] pointer-events-none mix-blend-screen"></div>
-            
+
             <div className="relative z-10 flex flex-col md:flex-row items-center gap-16">
               <div className="flex-1 text-center md:text-left">
                 <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 tracking-tighter leading-[1.1] text-transparent bg-clip-text bg-gradient-to-br from-white via-gray-200 to-gray-500">
@@ -237,7 +234,7 @@ function Home() {
                   </button>
                 </div>
               </div>
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, scale: 0.9, rotate: 2 }}
                 animate={{ opacity: 1, scale: 1, rotate: 0 }}
                 transition={{ duration: 1, delay: 0.2 }}
@@ -276,7 +273,7 @@ function Home() {
             </div>
             <div className="h-[500px] w-full rounded-2xl overflow-hidden relative shadow-inner">
               {isLoaded ? (
-                <GoogleMap mapContainerStyle={mapContainerStyle} center={center} zoom={13} options={{styles: darkMapStyle,disableDefaultUI: true,mapTypeControl: false,streetViewControl: false,fullscreenControl: false,backgroundColor: '#050505'}}>
+                <GoogleMap mapContainerStyle={mapContainerStyle} center={center} zoom={13} options={{ styles: darkMapStyle, disableDefaultUI: true, mapTypeControl: false, streetViewControl: false, fullscreenControl: false, backgroundColor: '#050505' }}>
                   {pinsFiltrados.map(obra => (<Marker key={obra.id} position={{ lat: obra.lat, lng: obra.lng }} onClick={() => navigate(`/obra/${obra.id}`)} />))}
                 </GoogleMap>
               ) : (
@@ -310,38 +307,38 @@ function ListaObras() {
       <div className="min-h-screen pt-28 p-4 md:p-8">
         <div className="max-w-6xl mx-auto">
           <h1 className="text-4xl font-bold mb-8">Obras Monitoradas</h1>
-        
-        <div className="glass rounded-2xl p-4 mb-8 flex flex-col md:flex-row gap-4 items-center">
-          <div className="flex-1 flex items-center gap-3 w-full border border-zinc-700 bg-zinc-900/50 rounded-xl px-4 py-3">
-            <IconSearch className="text-gray-400 text-xl" />
-            <input type="text" placeholder="Buscar obra pelo nome..." value={busca} onChange={e => setBusca(e.target.value)} className="bg-transparent w-full outline-none text-white placeholder-gray-500" />
-          </div>
-          <select value={construtoraFiltro} onChange={e => setConstrutoraFiltro(e.target.value)} className="w-full md:w-64 bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-3 text-white outline-none focus:border-neon-blue">
-            {construtoras.map(c => <option key={c} value={c}>{c}</option>)}
-          </select>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {obrasFiltradas.length > 0 ? obrasFiltradas.map(obra => (
-            <div key={obra.id} onClick={() => navigate(`/obra/${obra.id}`)} className="glass rounded-2xl p-6 cursor-pointer hover:scale-105 transition flex flex-col justify-between">
-              <div>
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-xl font-bold">{obra.nome}</h3>
-                  <span className="text-neon-green font-bold">{obra.progresso}%</span>
+          <div className="glass rounded-2xl p-4 mb-8 flex flex-col md:flex-row gap-4 items-center">
+            <div className="flex-1 flex items-center gap-3 w-full border border-zinc-700 bg-zinc-900/50 rounded-xl px-4 py-3">
+              <IconSearch className="text-gray-400 text-xl" />
+              <input type="text" placeholder="Buscar obra pelo nome..." value={busca} onChange={e => setBusca(e.target.value)} className="bg-transparent w-full outline-none text-white placeholder-gray-500" />
+            </div>
+            <select value={construtoraFiltro} onChange={e => setConstrutoraFiltro(e.target.value)} className="w-full md:w-64 bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-3 text-white outline-none focus:border-neon-blue">
+              {construtoras.map(c => <option key={c} value={c}>{c}</option>)}
+            </select>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {obrasFiltradas.length > 0 ? obrasFiltradas.map(obra => (
+              <div key={obra.id} onClick={() => navigate(`/obra/${obra.id}`)} className="glass rounded-2xl p-6 cursor-pointer hover:scale-105 transition flex flex-col justify-between">
+                <div>
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="text-xl font-bold">{obra.nome}</h3>
+                    <span className="text-neon-green font-bold">{obra.progresso}%</span>
+                  </div>
+                  <p className="text-gray-400 text-sm mb-4">{obra.construtora}</p>
                 </div>
-                <p className="text-gray-400 text-sm mb-4">{obra.construtora}</p>
+                <div className="w-full bg-zinc-800 rounded-full h-2">
+                  <div className="bg-neon-green h-2 rounded-full" style={{ width: `${obra.progresso}%` }}></div>
+                </div>
               </div>
-              <div className="w-full bg-zinc-800 rounded-full h-2">
-                <div className="bg-neon-green h-2 rounded-full" style={{ width: `${obra.progresso}%` }}></div>
+            )) : (
+              <div className="col-span-full flex flex-col items-center justify-center py-16 text-gray-400">
+                <span className="text-5xl mb-4">😢</span>
+                <p className="text-lg">Nenhuma obra encontrada para esta busca.</p>
               </div>
-            </div>
-          )) : (
-            <div className="col-span-full flex flex-col items-center justify-center py-16 text-gray-400">
-              <span className="text-5xl mb-4">😢</span>
-              <p className="text-lg">Nenhuma obra encontrada para esta busca.</p>
-            </div>
-          )}
-        </div>
+            )}
+          </div>
         </div>
       </div>
     </PageTransition>
@@ -352,151 +349,151 @@ function ObraDetalhe() {
   const { id } = useParams();
   const [showRA, setShowRA] = useState(false);
   const obra = MOCK_OBRAS.find(o => o.id === Number(id));
-  
+
   if (!obra) return <NotFound />;
 
-  const feed = [{ data: "04/05/2026", texto: "Concretagem do 12º andar finalizada" },{ data: "01/05/2026", texto: "Chegada de novo lote de materiais" },{ data: "28/04/2026", texto: "Instalação elétrica do 10º andar" }];
+  const feed = [{ data: "04/05/2026", texto: "Concretagem do 12º andar finalizada" }, { data: "01/05/2026", texto: "Chegada de novo lote de materiais" }, { data: "28/04/2026", texto: "Instalação elétrica do 10º andar" }];
   const documentos = ["Alvará de Construção.pdf", "Relatório de Impacto Ambiental.pdf", "Planta Baixa Aprovada.pdf"];
-  
+
   return (
     <PageTransition>
       <div className="min-h-screen pt-28 p-4 md:p-8">
         <div className="max-w-6xl mx-auto">
           <Link to="/obras" className="text-neon-blue hover:text-cyan-400 font-medium mb-6 flex items-center gap-2 transition w-fit"><IconArrowLeft /> Voltar para Obras</Link>
-        <div className="glass rounded-3xl p-8 mb-8">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
-            <div>
-              <h1 className="text-4xl font-bold mb-2">{obra.nome}</h1>
-              <p className="text-gray-400">{obra.construtora} • Av. dos Autonomistas, 2500 - Osasco</p>
+          <div className="glass rounded-3xl p-8 mb-8">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+              <div>
+                <h1 className="text-4xl font-bold mb-2">{obra.nome}</h1>
+                <p className="text-gray-400">{obra.construtora} • Av. dos Autonomistas, 2500 - Osasco</p>
+              </div>
+              <div className="flex gap-4 mt-4 md:mt-0">
+                <button onClick={() => alert("Funcionalidade Premium")} className="glass text-white font-bold py-3 px-6 rounded-xl hover:bg-zinc-800 transition shadow-lg flex items-center gap-2">
+                  <IconDownload /> Relatório PDF
+                </button>
+                <button onClick={() => setShowRA(true)} className="bg-neon-blue hover:bg-cyan-400 text-black font-bold py-3 px-6 rounded-xl shadow-lg shadow-neon-blue/20">Ver em RA 📱</button>
+              </div>
             </div>
-            <div className="flex gap-4 mt-4 md:mt-0">
-              <button onClick={() => alert("Funcionalidade Premium")} className="glass text-white font-bold py-3 px-6 rounded-xl hover:bg-zinc-800 transition shadow-lg flex items-center gap-2">
-                <IconDownload /> Relatório PDF
-              </button>
-              <button onClick={() => setShowRA(true)} className="bg-neon-blue hover:bg-cyan-400 text-black font-bold py-3 px-6 rounded-xl shadow-lg shadow-neon-blue/20">Ver em RA 📱</button>
+            <div className="mb-6">
+              <div className="flex justify-between mb-2">
+                <span className="text-gray-400">Progresso da Obra</span>
+                <span className="text-neon-green font-bold">{obra.progresso}%</span>
+              </div>
+              <div className="w-full bg-zinc-800 rounded-full h-3">
+                <div className="bg-neon-green h-3 rounded-full transition-all duration-1000" style={{ width: `${obra.progresso}%` }}></div>
+              </div>
             </div>
           </div>
-          <div className="mb-6">
-            <div className="flex justify-between mb-2">
-              <span className="text-gray-400">Progresso da Obra</span>
-              <span className="text-neon-green font-bold">{obra.progresso}%</span>
-            </div>
-            <div className="w-full bg-zinc-800 rounded-full h-3">
-              <div className="bg-neon-green h-3 rounded-full transition-all duration-1000" style={{ width: `${obra.progresso}%` }}></div>
-            </div>
-          </div>
-        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-          <div className="glass rounded-3xl p-6">
-            <h2 className="text-2xl font-bold mb-6">Evolução da Obra</h2>
-            <div className="w-full h-64">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <div className="glass rounded-3xl p-6">
+              <h2 className="text-2xl font-bold mb-6">Evolução da Obra</h2>
+              <div className="w-full h-64">
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart data={obra.evolucao}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#27272a" vertical={false} />
+                    <XAxis dataKey="mes" stroke="#a1a1aa" axisLine={false} tickLine={false} />
+                    <YAxis stroke="#a1a1aa" domain={[0, 100]} axisLine={false} tickLine={false} />
+                    <Tooltip contentStyle={{ backgroundColor: '#18181b', border: '1px solid #27272a', borderRadius: '8px', color: '#fff' }} />
+                    <Line type="monotone" dataKey="progresso" stroke="#00FF85" strokeWidth={4} dot={{ r: 6, fill: '#00FF85', strokeWidth: 0 }} activeDot={{ r: 8 }} />
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+
+            <div className="glass rounded-3xl p-6">
+              <h2 className="text-2xl font-bold mb-4">Documentos Públicos</h2>
+              <p className="text-gray-400 text-sm mb-6">Acesse os relatórios e alvarás disponíveis para esta obra, garantindo total transparência no processo.</p>
+              <div className="space-y-3">
+                {documentos.map((doc, i) => (
+                  <div key={i} className="flex justify-between items-center p-4 bg-zinc-900/50 border border-zinc-800 rounded-xl hover:bg-zinc-800 transition cursor-pointer group" onClick={() => alert(`Baixando ${doc}...`)}>
+                    <div className="flex items-center gap-3">
+                      <IconFileText className="text-neon-blue text-xl" />
+                      <span className="text-sm font-medium text-gray-200 group-hover:text-white">{doc}</span>
+                    </div>
+                    <IconDownload className="text-gray-400 group-hover:text-neon-blue transition" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="glass rounded-3xl p-6">
+              <h2 className="text-2xl font-bold mb-4">Fotos Recentes</h2>
+              <div className="grid grid-cols-2 gap-4">
+                {obra.fotos.map((foto, i) => (<img key={i} src={foto} alt={`Foto ${i + 1} da obra ${obra.nome}`} className="rounded-xl h-48 w-full object-cover border border-zinc-800 hover:border-neon-blue transition" />))}
+              </div>
+            </div>
+            <div className="glass rounded-3xl p-6">
+              <h2 className="text-2xl font-bold mb-4">Feed de Atualizações</h2>
+              <div className="space-y-6 mt-6">
+                {feed.map((item, i) => (
+                  <div key={i} className="border-l-2 border-neon-blue pl-4 relative">
+                    <div className="absolute -left-[5px] top-1 w-2 h-2 bg-neon-blue rounded-full"></div>
+                    <p className="text-sm text-neon-blue font-bold mb-1">{item.data}</p>
+                    <p className="text-gray-200">{item.texto}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="glass rounded-[3rem] p-8 md:p-12 mb-8 border border-zinc-800 shadow-[0_0_80px_rgba(0,0,0,0.6)] relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-neon-green/5 rounded-full blur-[120px] pointer-events-none mix-blend-screen"></div>
+            <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">
+              <div>
+                <h2 className="text-3xl font-black text-white mb-3 tracking-tight">Projeção de Valorização (ROI)</h2>
+                <p className="text-gray-400 max-w-2xl leading-relaxed">Acompanhe o crescimento do valor do seu investimento em relação ao custo de obra ao longo do tempo. Modelo atualizado com base no INCC e progresso físico.</p>
+              </div>
+              <div className="text-left md:text-right bg-zinc-900/60 backdrop-blur-md px-8 py-6 rounded-3xl border border-zinc-800/80 shadow-2xl">
+                <p className="text-sm text-gray-400 uppercase tracking-widest font-bold mb-2">ROI Projetado</p>
+                <p className="text-5xl font-black text-neon-green drop-shadow-[0_0_15px_rgba(0,255,133,0.3)]">+{obra.roi}%</p>
+              </div>
+            </div>
+            <div className="w-full h-[450px] relative z-10">
               <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={obra.evolucao}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#27272a" vertical={false} />
-                  <XAxis dataKey="mes" stroke="#a1a1aa" axisLine={false} tickLine={false} />
-                  <YAxis stroke="#a1a1aa" domain={[0, 100]} axisLine={false} tickLine={false} />
-                  <Tooltip contentStyle={{ backgroundColor: '#18181b', border: '1px solid #27272a', borderRadius: '8px', color: '#fff' }} />
-                  <Line type="monotone" dataKey="progresso" stroke="#00FF85" strokeWidth={4} dot={{ r: 6, fill: '#00FF85', strokeWidth: 0 }} activeDot={{ r: 8 }} />
-                </LineChart>
+                <AreaChart data={[
+                  { mes: "Jan", Custo: 100000, Valorizacao: 105000 },
+                  { mes: "Fev", Custo: 150000, Valorizacao: 162000 },
+                  { mes: "Mar", Custo: 200000, Valorizacao: 220000 },
+                  { mes: "Abr", Custo: 250000, Valorizacao: 285000 },
+                  { mes: "Mai", Custo: 300000, Valorizacao: 350000 },
+                  { mes: "Jun", Custo: 350000, Valorizacao: 427000 }
+                ]}>
+                  <defs>
+                    <linearGradient id="colorValorizacao" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#00FF85" stopOpacity={0.5} />
+                      <stop offset="95%" stopColor="#00FF85" stopOpacity={0} />
+                    </linearGradient>
+                    <linearGradient id="colorCusto" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#A855F7" stopOpacity={0.3} />
+                      <stop offset="95%" stopColor="#A855F7" stopOpacity={0} />
+                    </linearGradient>
+                    <filter id="glow">
+                      <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+                      <feMerge>
+                        <feMergeNode in="coloredBlur" />
+                        <feMergeNode in="SourceGraphic" />
+                      </feMerge>
+                    </filter>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+                  <XAxis dataKey="mes" stroke="#71717a" axisLine={false} tickLine={false} tick={{ fontSize: 14, fontWeight: 500 }} dy={10} />
+                  <YAxis stroke="#71717a" axisLine={false} tickLine={false} tickFormatter={(value) => `R$${value / 1000}k`} tick={{ fontSize: 14, fontWeight: 500 }} dx={-10} />
+                  <Tooltip
+                    contentStyle={{ backgroundColor: 'rgba(24, 24, 27, 0.9)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '16px', color: '#fff', boxShadow: '0 20px 40px rgba(0,0,0,0.5)', padding: '16px' }}
+                    itemStyle={{ fontWeight: 'bold' }}
+                    formatter={(value: any) => `R$ ${Number(value).toLocaleString('pt-BR')}`}
+                  />
+                  <Area type="monotone" dataKey="Valorizacao" stroke="#00FF85" fillOpacity={1} fill="url(#colorValorizacao)" strokeWidth={4} filter="url(#glow)" />
+                  <Area type="monotone" dataKey="Custo" stroke="#A855F7" fillOpacity={1} fill="url(#colorCusto)" strokeWidth={3} />
+                  <Legend verticalAlign="top" height={50} iconType="circle" wrapperStyle={{ paddingBottom: '30px', fontWeight: 'bold', fontSize: '14px' }} />
+                </AreaChart>
               </ResponsiveContainer>
             </div>
           </div>
-          
-          <div className="glass rounded-3xl p-6">
-            <h2 className="text-2xl font-bold mb-4">Documentos Públicos</h2>
-            <p className="text-gray-400 text-sm mb-6">Acesse os relatórios e alvarás disponíveis para esta obra, garantindo total transparência no processo.</p>
-            <div className="space-y-3">
-              {documentos.map((doc, i) => (
-                <div key={i} className="flex justify-between items-center p-4 bg-zinc-900/50 border border-zinc-800 rounded-xl hover:bg-zinc-800 transition cursor-pointer group" onClick={() => alert(`Baixando ${doc}...`)}>
-                  <div className="flex items-center gap-3">
-                    <IconFileText className="text-neon-blue text-xl" />
-                    <span className="text-sm font-medium text-gray-200 group-hover:text-white">{doc}</span>
-                  </div>
-                  <IconDownload className="text-gray-400 group-hover:text-neon-blue transition" />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="glass rounded-3xl p-6">
-            <h2 className="text-2xl font-bold mb-4">Fotos Recentes</h2>
-            <div className="grid grid-cols-2 gap-4">
-              {obra.fotos.map((foto, i) => (<img key={i} src={foto} alt={`Foto ${i+1} da obra ${obra.nome}`} className="rounded-xl h-48 w-full object-cover border border-zinc-800 hover:border-neon-blue transition" />))}
-            </div>
-          </div>
-          <div className="glass rounded-3xl p-6">
-            <h2 className="text-2xl font-bold mb-4">Feed de Atualizações</h2>
-            <div className="space-y-6 mt-6">
-              {feed.map((item, i) => (
-                <div key={i} className="border-l-2 border-neon-blue pl-4 relative">
-                  <div className="absolute -left-[5px] top-1 w-2 h-2 bg-neon-blue rounded-full"></div>
-                  <p className="text-sm text-neon-blue font-bold mb-1">{item.data}</p>
-                  <p className="text-gray-200">{item.texto}</p>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
-
-        <div className="glass rounded-[3rem] p-8 md:p-12 mb-8 border border-zinc-800 shadow-[0_0_80px_rgba(0,0,0,0.6)] relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-neon-green/5 rounded-full blur-[120px] pointer-events-none mix-blend-screen"></div>
-          <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">
-            <div>
-              <h2 className="text-3xl font-black text-white mb-3 tracking-tight">Projeção de Valorização (ROI)</h2>
-              <p className="text-gray-400 max-w-2xl leading-relaxed">Acompanhe o crescimento do valor do seu investimento em relação ao custo de obra ao longo do tempo. Modelo atualizado com base no INCC e progresso físico.</p>
-            </div>
-            <div className="text-left md:text-right bg-zinc-900/60 backdrop-blur-md px-8 py-6 rounded-3xl border border-zinc-800/80 shadow-2xl">
-              <p className="text-sm text-gray-400 uppercase tracking-widest font-bold mb-2">ROI Projetado</p>
-              <p className="text-5xl font-black text-neon-green drop-shadow-[0_0_15px_rgba(0,255,133,0.3)]">+{obra.roi}%</p>
-            </div>
-          </div>
-          <div className="w-full h-[450px] relative z-10">
-            <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={[
-                { mes: "Jan", Custo: 100000, Valorizacao: 105000 },
-                { mes: "Fev", Custo: 150000, Valorizacao: 162000 },
-                { mes: "Mar", Custo: 200000, Valorizacao: 220000 },
-                { mes: "Abr", Custo: 250000, Valorizacao: 285000 },
-                { mes: "Mai", Custo: 300000, Valorizacao: 350000 },
-                { mes: "Jun", Custo: 350000, Valorizacao: 427000 }
-              ]}>
-                <defs>
-                  <linearGradient id="colorValorizacao" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#00FF85" stopOpacity={0.5}/>
-                    <stop offset="95%" stopColor="#00FF85" stopOpacity={0}/>
-                  </linearGradient>
-                  <linearGradient id="colorCusto" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#A855F7" stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor="#A855F7" stopOpacity={0}/>
-                  </linearGradient>
-                  <filter id="glow">
-                    <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-                    <feMerge>
-                      <feMergeNode in="coloredBlur"/>
-                      <feMergeNode in="SourceGraphic"/>
-                    </feMerge>
-                  </filter>
-                </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
-                <XAxis dataKey="mes" stroke="#71717a" axisLine={false} tickLine={false} tick={{ fontSize: 14, fontWeight: 500 }} dy={10} />
-                <YAxis stroke="#71717a" axisLine={false} tickLine={false} tickFormatter={(value) => `R$${value/1000}k`} tick={{ fontSize: 14, fontWeight: 500 }} dx={-10} />
-                <Tooltip 
-                  contentStyle={{ backgroundColor: 'rgba(24, 24, 27, 0.9)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '16px', color: '#fff', boxShadow: '0 20px 40px rgba(0,0,0,0.5)', padding: '16px' }} 
-                  itemStyle={{ fontWeight: 'bold' }}
-                  formatter={(value: any) => `R$ ${Number(value).toLocaleString('pt-BR')}`}
-                />
-                <Area type="monotone" dataKey="Valorizacao" stroke="#00FF85" fillOpacity={1} fill="url(#colorValorizacao)" strokeWidth={4} filter="url(#glow)" />
-                <Area type="monotone" dataKey="Custo" stroke="#A855F7" fillOpacity={1} fill="url(#colorCusto)" strokeWidth={3} />
-                <Legend verticalAlign="top" height={50} iconType="circle" wrapperStyle={{ paddingBottom: '30px', fontWeight: 'bold', fontSize: '14px' }} />
-              </AreaChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
-
-      </div>
       </div>
       {showRA && (
         <div className="fixed inset-0 bg-[#050505]/90 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={() => setShowRA(false)}>
@@ -520,37 +517,37 @@ function Sobre() {
       <div className="min-h-screen pt-28 p-4 md:p-8">
         <div className="max-w-4xl mx-auto glass rounded-[2rem] p-8 md:p-12 border border-zinc-800">
           <h1 className="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight">Sobre o Construct<span className="text-neon-blue">View</span></h1>
-        <p className="text-lg text-gray-300 mb-4">Plataforma de transparência em obras públicas e privadas usando QR Code, Realidade Aumentada e dados abertos.</p>
-        
-        <h2 className="text-2xl font-bold mt-12 mb-4 text-neon-blue">Por que ConstructView?</h2>
-        <p className="text-gray-300 mb-4">O mercado de construção civil movimenta R$ 2.1 trilhões no Brasil, mas 67% dos investidores não têm acesso a dados em tempo real. Atrasos custam em média 23% do orçamento. Nossa plataforma resolve isso com QR Codes nos tapumes, RA para visualização 3D e dashboards que traduzem dados técnicos em ROI claro.</p>
-        <p className="text-gray-300 mb-8">Tanto o cidadão comum quanto o investidor qualificado conseguem fiscalizar e investir com transparência total.</p>
+          <p className="text-lg text-gray-300 mb-4">Plataforma de transparência em obras públicas e privadas usando QR Code, Realidade Aumentada e dados abertos.</p>
 
-        <h2 className="text-2xl font-bold mt-8 mb-4 text-neon-blue">Stack Técnica</h2>
-        <ul className="space-y-2 text-gray-300 mb-12">
-          <li>• <span className="text-white">Frontend:</span> React + TypeScript + TailwindCSS + React Router + Recharts</li>
-          <li>• <span className="text-white">Backend:</span> Node.js + Express + Prisma</li>
-          <li>• <span className="text-white">Banco:</span> PostgreSQL com extensão PostGIS</li>
-          <li>• <span className="text-white">APIs:</span> Google Maps, QR Code, Tippy.js</li>
-          <li>• <span className="text-white">Mobile:</span> React Native + AR Core</li>
-        </ul>
+          <h2 className="text-2xl font-bold mt-12 mb-4 text-neon-blue">Por que ConstructView?</h2>
+          <p className="text-gray-300 mb-4">O mercado de construção civil movimenta R$ 2.1 trilhões no Brasil, mas 67% dos investidores não têm acesso a dados em tempo real. Atrasos custam em média 23% do orçamento. Nossa plataforma resolve isso com QR Codes nos tapumes, RA para visualização 3D e dashboards que traduzem dados técnicos em ROI claro.</p>
+          <p className="text-gray-300 mb-8">Tanto o cidadão comum quanto o investidor qualificado conseguem fiscalizar e investir com transparência total.</p>
 
-        <h2 className="text-2xl font-bold mt-12 mb-8 text-neon-blue">Equipe Fundadora</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {EQUIPE.map((membro, i) => (
-            <div key={i} className="glass rounded-2xl p-6 text-center hover:scale-105 transition border border-zinc-800 hover:border-neon-blue">
-              <img src={membro.foto} alt={membro.nome} className="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-2 border-neon-blue" />
-              <h3 className="font-bold text-lg">{membro.nome}</h3>
-              <p className="text-neon-green text-sm mb-4">{membro.cargo}</p>
-              <div className="flex justify-center gap-4 text-xl">
-                <a href={membro.email} target="_blank" rel="noreferrer" className="hover:text-neon-blue transition"><IconMail /></a>
-                <a href={membro.linkedin} target="_blank" rel="noreferrer" className="hover:text-neon-blue transition"><IconLinkedin /></a>
-                <a href={membro.instagram} target="_blank" rel="noreferrer" className="hover:text-neon-blue transition"><IconInstagram /></a>
+          <h2 className="text-2xl font-bold mt-8 mb-4 text-neon-blue">Stack Técnica</h2>
+          <ul className="space-y-2 text-gray-300 mb-12">
+            <li>• <span className="text-white">Frontend:</span> React + TypeScript + TailwindCSS + React Router + Recharts</li>
+            <li>• <span className="text-white">Backend:</span> Node.js + Express + Prisma</li>
+            <li>• <span className="text-white">Banco:</span> PostgreSQL com extensão PostGIS</li>
+            <li>• <span className="text-white">APIs:</span> Google Maps, QR Code, Tippy.js</li>
+            <li>• <span className="text-white">Mobile:</span> React Native + AR Core</li>
+          </ul>
+
+          <h2 className="text-2xl font-bold mt-12 mb-8 text-neon-blue">Equipe Fundadora</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {EQUIPE.map((membro, i) => (
+              <div key={i} className="glass rounded-2xl p-6 text-center hover:scale-105 transition border border-zinc-800 hover:border-neon-blue">
+                <img src={membro.foto} alt={membro.nome} className="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-2 border-neon-blue" />
+                <h3 className="font-bold text-lg">{membro.nome}</h3>
+                <p className="text-neon-green text-sm mb-4">{membro.cargo}</p>
+                <div className="flex justify-center gap-4 text-xl">
+                  <a href={membro.email} target="_blank" rel="noreferrer" className="hover:text-neon-blue transition"><IconMail /></a>
+                  <a href={membro.linkedin} target="_blank" rel="noreferrer" className="hover:text-neon-blue transition"><IconLinkedin /></a>
+                  <a href={membro.instagram} target="_blank" rel="noreferrer" className="hover:text-neon-blue transition"><IconInstagram /></a>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
       </div>
     </PageTransition>
   );
@@ -559,7 +556,7 @@ function Sobre() {
 function Perfil() {
   const [emailEnviado, setEmailEnviado] = useState(false);
   const navigate = useNavigate();
-  
+
   const reenviarEmail = () => {
     setEmailEnviado(true);
     setTimeout(() => setEmailEnviado(false), 3000);
@@ -570,7 +567,7 @@ function Perfil() {
       <div className="min-h-screen pt-28 p-4 md:p-8">
         <div className="max-w-5xl mx-auto">
           <button onClick={() => navigate(-1)} className="text-neon-blue hover:text-cyan-400 font-medium mb-8 flex items-center gap-2 transition w-fit"><IconArrowLeft /> Voltar</button>
-          
+
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4">
             <div>
               <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-2">Configurações da Conta</h1>
@@ -580,12 +577,12 @@ function Perfil() {
               Editar Perfil
             </button>
           </div>
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2 space-y-8">
               <div className="glass rounded-[2rem] p-8 border border-zinc-800 shadow-xl relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-neon-blue/5 rounded-full blur-3xl"></div>
-                <h2 className="text-xl font-bold mb-6 text-white flex items-center gap-3"><IconInfo className="text-neon-blue"/> Dados do Gestor</h2>
+                <h2 className="text-xl font-bold mb-6 text-white flex items-center gap-3"><IconInfo className="text-neon-blue" /> Dados do Gestor</h2>
                 <div className="space-y-6 text-base">
                   <div className="flex flex-col md:flex-row md:items-center justify-between border-b border-zinc-800/50 pb-4">
                     <span className="text-gray-400">Nome</span>
@@ -609,7 +606,7 @@ function Perfil() {
               <div className="glass rounded-[2rem] p-8 border border-zinc-800 shadow-xl relative overflow-hidden">
                 <h2 className="text-xl font-bold mb-4 text-white">Verificação de E-mail</h2>
                 <p className="text-gray-300 mb-6 leading-relaxed max-w-xl text-sm">Para garantir a segurança dos seus investimentos e o recebimento de relatórios PDF, por favor confirme seu endereço de e-mail.</p>
-                <button 
+                <button
                   onClick={reenviarEmail}
                   disabled={emailEnviado}
                   className="bg-neon-blue hover:bg-cyan-400 text-black font-bold py-3 px-6 rounded-full transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 hover:shadow-[0_0_15px_rgba(0,217,255,0.4)] text-sm"
@@ -683,8 +680,8 @@ function Dashboard() {
     { label: "Obras Ativas", value: "12", tip: "Empreendimentos com status 'Em Andamento' que ainda não foram entregues" },
     { label: "Prazo Médio", value: "-3 dias", color: "text-neon-green", tip: "Diferença entre data prevista e real. Negativo = obra adiantada" }
   ];
-  const pieData = [{ name: "Residencial", value: 60, fill: "#00D9FF" },{ name: "Comercial", value: 30, fill: "#00FF85" },{ name: "Infra", value: 10, fill: "#A855F7" }];
-  
+  const pieData = [{ name: "Residencial", value: 60, fill: "#00D9FF" }, { name: "Comercial", value: 30, fill: "#00FF85" }, { name: "Infra", value: 10, fill: "#A855F7" }];
+
   const MOCK_OBRAS_MAPA = [
     { id: 1, nome: "Residencial Aurora", lat: -23.53, lng: -46.79, roi: 22 },
     { id: 2, nome: "Parque das Nações", lat: -23.525, lng: -46.77, roi: 8 },
@@ -710,66 +707,66 @@ function Dashboard() {
               </button>
             </div>
           </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          {kpis.map((kpi, i) => (
-            <motion.div key={i} initial={{opacity:0}} animate={{opacity:1}} transition={{duration: 0.5, delay: i * 0.1}} className="glass rounded-2xl p-6 border border-zinc-800 hover:border-neon-blue transition">
-              <p className="text-gray-400 text-sm flex items-center gap-2">
-                {kpi.label}
-                <Tippy content={kpi.tip}><span><IconInfo className="cursor-help" /></span></Tippy>
-              </p>
-              <p className={`text-3xl font-bold mt-2 ${kpi.color || 'text-white'}`}>{kpi.value}</p>
-            </motion.div>
-          ))}
-        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div className="glass rounded-3xl p-6">
-            <h2 className="text-2xl font-bold mb-6">Distribuição de Portfólio</h2>
-            <div className="w-full h-64">
-              <ResponsiveContainer>
-                <PieChart>
-                  <Pie data={pieData} dataKey="value" innerRadius={60} outerRadius={90} paddingAngle={5}>
-                    {pieData.map((entry, index) => (<Cell key={index} fill={entry.fill} />))}
-                  </Pie>
-                  <Tooltip /><Legend />
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            {kpis.map((kpi, i) => (
+              <motion.div key={i} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: i * 0.1 }} className="glass rounded-2xl p-6 border border-zinc-800 hover:border-neon-blue transition">
+                <p className="text-gray-400 text-sm flex items-center gap-2">
+                  {kpi.label}
+                  <Tippy content={kpi.tip}><span><IconInfo className="cursor-help" /></span></Tippy>
+                </p>
+                <p className={`text-3xl font-bold mt-2 ${kpi.color || 'text-white'}`}>{kpi.value}</p>
+              </motion.div>
+            ))}
           </div>
 
-          <div className="glass rounded-3xl p-6">
-            <h2 className="text-2xl font-bold mb-6">Mapa de Calor de Investimento</h2>
-            <p className="text-sm text-gray-400 mb-4">Verde: ROI &gt;15% | Amarelo: 5-15% | Vermelho: &lt;5%</p>
-            <div className="w-full h-64 rounded-xl overflow-hidden">
-              {isLoaded ? (
-                <GoogleMap mapContainerStyle={{width: '100%', height: '100%'}} center={center} zoom={13} options={{styles: darkMapStyle, disableDefaultUI: true}}>
-                  {MOCK_OBRAS_MAPA.map(obra => (
-                    <MarkerF 
-                      key={obra.id} 
-                      position={{ lat: obra.lat, lng: obra.lng }} 
-                      onClick={() => setObraSelecionada(obra.id)}
-                      icon={{ path: 0, scale: 10, fillColor: getPinColor(obra.roi), fillOpacity: 1, strokeWeight: 2, strokeColor: '#FFFFFF' }}
-                    >
-                      {obraSelecionada === obra.id && (
-                        <InfoWindowF onCloseClick={() => setObraSelecionada(null)}>
-                          <div className="text-black p-2">
-                            <p className="font-bold text-lg">{obra.nome}</p>
-                            <p className="text-sm text-gray-700">ROI: <span className="font-bold">{obra.roi}%</span></p>
-                            <button onClick={() => navigate(`/obra/${obra.id}`)} className="text-blue-600 font-bold underline text-sm mt-2 hover:text-blue-800 transition">Ver detalhes →</button>
-                          </div>
-                        </InfoWindowF>
-                      )}
-                    </MarkerF>
-                  ))}
-                </GoogleMap>
-              ) : (
-                <div className="w-full h-full bg-zinc-900 rounded-2xl animate-pulse" />
-              )}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="glass rounded-3xl p-6">
+              <h2 className="text-2xl font-bold mb-6">Distribuição de Portfólio</h2>
+              <div className="w-full h-64">
+                <ResponsiveContainer>
+                  <PieChart>
+                    <Pie data={pieData} dataKey="value" innerRadius={60} outerRadius={90} paddingAngle={5}>
+                      {pieData.map((entry, index) => (<Cell key={index} fill={entry.fill} />))}
+                    </Pie>
+                    <Tooltip /><Legend />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+
+            <div className="glass rounded-3xl p-6">
+              <h2 className="text-2xl font-bold mb-6">Mapa de Calor de Investimento</h2>
+              <p className="text-sm text-gray-400 mb-4">Verde: ROI &gt;15% | Amarelo: 5-15% | Vermelho: &lt;5%</p>
+              <div className="w-full h-64 rounded-xl overflow-hidden">
+                {isLoaded ? (
+                  <GoogleMap mapContainerStyle={{ width: '100%', height: '100%' }} center={center} zoom={13} options={{ styles: darkMapStyle, disableDefaultUI: true }}>
+                    {MOCK_OBRAS_MAPA.map(obra => (
+                      <MarkerF
+                        key={obra.id}
+                        position={{ lat: obra.lat, lng: obra.lng }}
+                        onClick={() => setObraSelecionada(obra.id)}
+                        icon={{ path: 0, scale: 10, fillColor: getPinColor(obra.roi), fillOpacity: 1, strokeWeight: 2, strokeColor: '#FFFFFF' }}
+                      >
+                        {obraSelecionada === obra.id && (
+                          <InfoWindowF onCloseClick={() => setObraSelecionada(null)}>
+                            <div className="text-black p-2">
+                              <p className="font-bold text-lg">{obra.nome}</p>
+                              <p className="text-sm text-gray-700">ROI: <span className="font-bold">{obra.roi}%</span></p>
+                              <button onClick={() => navigate(`/obra/${obra.id}`)} className="text-blue-600 font-bold underline text-sm mt-2 hover:text-blue-800 transition">Ver detalhes →</button>
+                            </div>
+                          </InfoWindowF>
+                        )}
+                      </MarkerF>
+                    ))}
+                  </GoogleMap>
+                ) : (
+                  <div className="w-full h-full bg-zinc-900 rounded-2xl animate-pulse" />
+                )}
+              </div>
             </div>
           </div>
         </div>
-      </div>
       </div>
     </PageTransition>
   );
@@ -785,7 +782,7 @@ function Login() {
   const [emailRecuperacao, setEmailRecuperacao] = useState("");
   const [enviado, setEnviado] = useState(false);
   const [mostrarSenha, setMostrarSenha] = useState(false);
-  
+
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     setErro("");
@@ -825,7 +822,7 @@ function Login() {
           <Link to="/" className="text-neon-blue hover:text-cyan-400 mb-8 inline-flex items-center gap-2 transition font-medium w-fit group">
             <IconArrowLeft className="group-hover:-translate-x-1 transition-transform" /> Voltar
           </Link>
-          
+
           <div className="text-center mb-10">
             <h1 className="text-4xl font-black mb-3 tracking-tight">Construct<span className="text-neon-blue drop-shadow-[0_0_15px_rgba(0,217,255,0.4)]">View</span></h1>
             <p className="text-gray-400 font-medium tracking-wide">Acesso restrito ao Gestor</p>
@@ -834,24 +831,24 @@ function Login() {
           <form onSubmit={handleLogin} className="space-y-6">
             <div>
               <label className="text-sm font-bold text-gray-300 mb-2 block">E-mail Corporativo</label>
-              <input 
-                type="email" 
-                value={email} 
-                onChange={e => setEmail(e.target.value)} 
-                className={`w-full bg-black/40 border rounded-2xl p-4 outline-none transition-all placeholder:text-gray-600 ${erro ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/50' : 'border-zinc-700/80 focus:border-neon-blue focus:ring-2 focus:ring-neon-blue/30'}`} 
+              <input
+                type="email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                className={`w-full bg-black/40 border rounded-2xl p-4 outline-none transition-all placeholder:text-gray-600 ${erro ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/50' : 'border-zinc-700/80 focus:border-neon-blue focus:ring-2 focus:ring-neon-blue/30'}`}
                 placeholder="admin@construtora.com"
               />
               {erro && <p className="text-red-500 text-sm mt-2 font-medium flex items-center gap-1"><IconInfo size={16} /> {erro}</p>}
             </div>
-            
+
             <div>
               <label className="text-sm font-bold text-gray-300 mb-2 block">Senha de Acesso</label>
               <div className="relative">
-                <input 
-                  type={mostrarSenha ? "text" : "password"} 
-                  value={senha} 
-                  onChange={e => setSenha(e.target.value)} 
-                  className="w-full bg-black/40 border border-zinc-700/80 rounded-2xl p-4 outline-none focus:border-neon-blue focus:ring-2 focus:ring-neon-blue/30 transition-all placeholder:text-gray-600" 
+                <input
+                  type={mostrarSenha ? "text" : "password"}
+                  value={senha}
+                  onChange={e => setSenha(e.target.value)}
+                  className="w-full bg-black/40 border border-zinc-700/80 rounded-2xl p-4 outline-none focus:border-neon-blue focus:ring-2 focus:ring-neon-blue/30 transition-all placeholder:text-gray-600"
                   placeholder="••••••••"
                 />
                 <button type="button" onClick={() => setMostrarSenha(!mostrarSenha)} className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition p-2 hover:bg-white/5 rounded-full">
@@ -863,7 +860,7 @@ function Login() {
             <button type="submit" disabled={loading} className="w-full bg-neon-blue hover:bg-cyan-400 text-black font-extrabold text-lg py-4 rounded-2xl transition-all disabled:opacity-50 hover:shadow-[0_0_25px_rgba(0,217,255,0.4)] mt-2">
               {loading ? "Autenticando..." : "Entrar no Painel"}
             </button>
-            
+
             <div className="flex justify-between text-sm font-medium pt-2">
               <button type="button" onClick={() => setModalSenha(true)} className="text-gray-400 hover:text-neon-blue transition">Esqueci a senha</button>
               <button type="button" onClick={() => navigate("/cadastro")} className="text-gray-400 hover:text-neon-blue transition">Solicitar acesso</button>
@@ -871,41 +868,41 @@ function Login() {
           </form>
         </div>
 
-      {/* MODAL DE RECUPERAÇÃO */}
-      {modalSenha && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-          <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="glass rounded-2xl p-8 max-w-sm w-full">
-            {!enviado ? (
-              <>
-                <h2 className="text-2xl font-bold mb-4">Recuperar senha</h2>
-                <p className="text-gray-300 mb-6 text-sm">Digite seu e-mail cadastrado. Enviaremos um link para redefinir sua senha.</p>
-                <form onSubmit={handleRecuperarSenha}>
-                  <input 
-                    type="email" 
-                    placeholder="seu@email.com"
-                    value={emailRecuperacao} 
-                    onChange={e => setEmailRecuperacao(e.target.value)} 
-                    required
-                    className="w-full bg-zinc-900 border border-zinc-700 rounded-xl p-3 mb-4 outline-none focus:border-neon-blue" 
-                  />
-                  <div className="flex gap-3">
-                    <button type="button" onClick={() => setModalSenha(false)} className="flex-1 glass border border-zinc-700 py-3 rounded-xl hover:bg-zinc-800 transition">Cancelar</button>
-                    <button type="submit" className="flex-1 bg-neon-blue text-black font-bold py-3 rounded-xl hover:bg-cyan-400 transition">Enviar</button>
+        {/* MODAL DE RECUPERAÇÃO */}
+        {modalSenha && (
+          <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+            <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="glass rounded-2xl p-8 max-w-sm w-full">
+              {!enviado ? (
+                <>
+                  <h2 className="text-2xl font-bold mb-4">Recuperar senha</h2>
+                  <p className="text-gray-300 mb-6 text-sm">Digite seu e-mail cadastrado. Enviaremos um link para redefinir sua senha.</p>
+                  <form onSubmit={handleRecuperarSenha}>
+                    <input
+                      type="email"
+                      placeholder="seu@email.com"
+                      value={emailRecuperacao}
+                      onChange={e => setEmailRecuperacao(e.target.value)}
+                      required
+                      className="w-full bg-zinc-900 border border-zinc-700 rounded-xl p-3 mb-4 outline-none focus:border-neon-blue"
+                    />
+                    <div className="flex gap-3">
+                      <button type="button" onClick={() => setModalSenha(false)} className="flex-1 glass border border-zinc-700 py-3 rounded-xl hover:bg-zinc-800 transition">Cancelar</button>
+                      <button type="submit" className="flex-1 bg-neon-blue text-black font-bold py-3 rounded-xl hover:bg-cyan-400 transition">Enviar</button>
+                    </div>
+                  </form>
+                </>
+              ) : (
+                <div className="text-center py-4">
+                  <div className="w-16 h-16 bg-neon-green/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <IconMail className="text-3xl text-neon-green" />
                   </div>
-                </form>
-              </>
-            ) : (
-              <div className="text-center py-4">
-                <div className="w-16 h-16 bg-neon-green/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <IconMail className="text-3xl text-neon-green" />
+                  <h2 className="text-2xl font-bold mb-2">E-mail enviado!</h2>
+                  <p className="text-gray-300 text-sm">Verifique sua caixa de entrada e spam. O link expira em 15 minutos.</p>
                 </div>
-                <h2 className="text-2xl font-bold mb-2">E-mail enviado!</h2>
-                <p className="text-gray-300 text-sm">Verifique sua caixa de entrada e spam. O link expira em 15 minutos.</p>
-              </div>
-            )}
-          </motion.div>
-        </div>
-      )}
+              )}
+            </motion.div>
+          </div>
+        )}
       </div>
     </PageTransition>
   );
@@ -957,7 +954,7 @@ function CadastroFake() {
           <Link to="/login" className="text-neon-blue hover:text-cyan-400 mb-8 inline-flex items-center gap-2 transition font-medium w-fit group">
             <IconArrowLeft className="group-hover:-translate-x-1 transition-transform" /> Voltar
           </Link>
-          
+
           <div className="text-center mb-10">
             <h1 className="text-4xl font-black mb-3 tracking-tight">Criar Conta <span className="text-neon-blue drop-shadow-[0_0_15px_rgba(0,217,255,0.4)]">Grátis</span></h1>
             <p className="text-gray-400 font-medium tracking-wide">Junte-se à revolução imobiliária</p>
@@ -1033,13 +1030,13 @@ function App() {
 
 function QrCard({ obraId }: { obraId: number }) {
   const urlObra = `https://constructview.vercel.app/obra/${obraId}`;
-  
+
   const handleDownloadApp = () => {
     window.open("/app-release.apk", "_blank");
   };
 
   return (
-    <motion.div 
+    <motion.div
       whileHover={{ scale: 1.02 }}
       className="glass rounded-3xl p-6 md:p-8 border border-zinc-800 hover:border-neon-blue transition-all shadow-xl"
     >
@@ -1047,19 +1044,19 @@ function QrCard({ obraId }: { obraId: number }) {
         <div className="flex-1">
           <h3 className="text-2xl font-extrabold mb-3">Obras na palma da mão</h3>
           <p className="text-gray-300 mb-6 leading-relaxed">Baixe o app oficial para visualizar modelos 3D das obras diretamente no local com Realidade Aumentada.</p>
-          <button 
+          <button
             onClick={handleDownloadApp}
             className="bg-neon-blue hover:bg-cyan-400 text-black font-bold py-4 px-8 rounded-full transition-all flex items-center gap-3 hover:shadow-[0_0_20px_rgba(0,217,255,0.4)]"
           >
             <IconDownload size={20} /> Baixar App Mobile
           </button>
         </div>
-        
+
         <div className="glass rounded-xl p-4 border border-zinc-700">
           <p className="text-sm text-gray-400 mb-2 text-center">QR Code do Tapume</p>
           <div className="bg-white rounded-lg overflow-hidden flex items-center justify-center" style={{ width: 128, height: 128, margin: "0 auto" }}>
-            <QRCodeSVG 
-              value={urlObra} 
+            <QRCodeSVG
+              value={urlObra}
               size={128}
               bgColor="#FFFFFF"
               fgColor="#000000"
