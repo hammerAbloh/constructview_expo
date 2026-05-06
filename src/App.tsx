@@ -24,20 +24,6 @@ const FiArrowLeft: any = require('react-icons/fi').FiArrowLeft;
 const FiChevronLeft: any = require('react-icons/fi').FiChevronLeft;
 const FiChevronRight: any = require('react-icons/fi').FiChevronRight;
 
-const IconMenu = FiMenu;
-const IconX = FiX;
-const IconSearch = FiSearch;
-const IconLogOut = FiLogOut;
-const IconDownload = FiDownload;
-const IconFileText = FiFileText;
-const IconMail = FiMail;
-const IconLinkedin = FiLinkedin;
-const IconInstagram = FiInstagram;
-const IconInfo = FiInfo;
-const IconEye = FiEye;
-const IconEyeOff = FiEyeOff;
-const IconCheck = FiCheck;
-const IconArrowLeft = FiArrowLeft;
 
 const mapContainerStyle = { width: '100%', height: '100%', borderRadius: '1rem' };
 const center = { lat: -23.532, lng: -46.791 };
@@ -120,11 +106,11 @@ function Navbar() {
             <Link to="/sobre" className="text-gray-300 hover:text-neon-blue font-medium transition">Sobre</Link>
             <Link to="/perfil" className="text-gray-300 hover:text-neon-blue font-medium transition">Minha Conta</Link>
             <Link to="/login" className="bg-neon-blue text-black font-bold px-6 py-2.5 rounded-full hover:bg-cyan-400 hover:shadow-[0_0_15px_rgba(0,217,255,0.4)] transition-all flex items-center gap-2">
-              <IconLogOut /> Portal do Gestor
+              <FiLogOut /> Portal do Gestor
             </Link>
           </nav>
           <button className="md:hidden text-2xl" onClick={() => setMenuOpen(!menuOpen)}>
-            {menuOpen ? <IconX /> : <IconMenu />}
+            {menuOpen ? <FiX /> : <FiMenu />}
           </button>
         </div>
         {menuOpen && (
@@ -326,7 +312,7 @@ function ListaObras() {
 
           <div className="glass rounded-2xl p-4 mb-8 flex flex-col md:flex-row gap-4 items-center">
             <div className="flex-1 flex items-center gap-3 w-full border border-zinc-700 bg-zinc-900/50 rounded-xl px-4 py-3">
-              <IconSearch className="text-gray-400 text-xl" />
+              <FiSearch className="text-gray-400 text-xl" />
               <input type="text" placeholder="Buscar obra pelo nome..." value={busca} onChange={e => setBusca(e.target.value)} className="bg-transparent w-full outline-none text-white placeholder-gray-500" />
             </div>
             <select value={construtoraFiltro} onChange={e => setConstrutoraFiltro(e.target.value)} className="w-full md:w-64 bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-3 text-white outline-none focus:border-neon-blue">
@@ -375,7 +361,7 @@ function ObraDetalhe() {
     <PageTransition>
       <div className="min-h-screen pt-28 p-4 md:p-8">
         <div className="max-w-6xl mx-auto">
-          <Link to="/obras" className="text-neon-blue hover:text-cyan-400 font-medium mb-6 flex items-center gap-2 transition w-fit"><IconArrowLeft /> Voltar para Obras</Link>
+          <Link to="/obras" className="text-neon-blue hover:text-cyan-400 font-medium mb-6 flex items-center gap-2 transition w-fit"><FiArrowLeft /> Voltar para Obras</Link>
           <div className="glass rounded-3xl p-8 mb-8">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
               <div>
@@ -384,7 +370,7 @@ function ObraDetalhe() {
               </div>
               <div className="flex gap-4 mt-4 md:mt-0">
                 <button onClick={() => alert("Funcionalidade Premium")} className="glass text-white font-bold py-3 px-6 rounded-xl hover:bg-zinc-800 transition shadow-lg flex items-center gap-2">
-                  <IconDownload /> Relatório PDF
+                  <FiDownload /> Relatório PDF
                 </button>
                 <button onClick={() => setShowRA(true)} className="bg-neon-blue hover:bg-cyan-400 text-black font-bold py-3 px-6 rounded-xl shadow-lg shadow-neon-blue/20">Ver em RA 📱</button>
               </div>
@@ -423,10 +409,10 @@ function ObraDetalhe() {
                 {documentos.map((doc, i) => (
                   <div key={i} className="flex justify-between items-center p-4 bg-zinc-900/50 border border-zinc-800 rounded-xl hover:bg-zinc-800 transition cursor-pointer group" onClick={() => alert(`Baixando ${doc}...`)}>
                     <div className="flex items-center gap-3">
-                      <IconFileText className="text-neon-blue text-xl" />
+                      <FiFileText className="text-neon-blue text-xl" />
                       <span className="text-sm font-medium text-gray-200 group-hover:text-white">{doc}</span>
                     </div>
-                    <IconDownload className="text-gray-400 group-hover:text-neon-blue transition" />
+                    <FiDownload className="text-gray-400 group-hover:text-neon-blue transition" />
                   </div>
                 ))}
               </div>
@@ -556,9 +542,9 @@ function Sobre() {
                 <h3 className="font-bold text-lg">{membro.nome}</h3>
                 <p className="text-neon-green text-sm mb-4">{membro.cargo}</p>
                 <div className="flex justify-center gap-4 text-xl">
-                  <a href={membro.email} target="_blank" rel="noreferrer" className="hover:text-neon-blue transition"><IconMail /></a>
-                  <a href={membro.linkedin} target="_blank" rel="noreferrer" className="hover:text-neon-blue transition"><IconLinkedin /></a>
-                  <a href={membro.instagram} target="_blank" rel="noreferrer" className="hover:text-neon-blue transition"><IconInstagram /></a>
+                  <a href={membro.email} target="_blank" rel="noreferrer" className="hover:text-neon-blue transition"><FiMail /></a>
+                  <a href={membro.linkedin} target="_blank" rel="noreferrer" className="hover:text-neon-blue transition"><FiLinkedin /></a>
+                  <a href={membro.instagram} target="_blank" rel="noreferrer" className="hover:text-neon-blue transition"><FiInstagram /></a>
                 </div>
               </div>
             ))}
@@ -812,7 +798,7 @@ function Dashboard() {
             <div className="flex gap-4">
               <button onClick={() => navigate("/perfil")} className="glass px-6 py-2.5 rounded-full hover:bg-zinc-800/80 transition-all font-medium">Minha Conta</button>
               <button onClick={() => navigate("/")} className="glass px-6 py-2.5 rounded-full hover:bg-zinc-800/80 transition-all flex items-center gap-2 text-red-400 hover:text-red-300 font-medium">
-                <IconLogOut /> Sair
+                <FiLogOut /> Sair
               </button>
             </div>
           </div>
@@ -822,7 +808,7 @@ function Dashboard() {
               <motion.div key={i} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: i * 0.1 }} className="glass rounded-2xl p-6 border border-zinc-800 hover:border-neon-blue transition">
                 <p className="text-gray-400 text-sm flex items-center gap-2">
                   {kpi.label}
-                  <Tippy content={kpi.tip}><span><IconInfo className="cursor-help" /></span></Tippy>
+                  <Tippy content={kpi.tip}><span><FiInfo className="cursor-help" /></span></Tippy>
                 </p>
                 <p className={`text-3xl font-bold mt-2 ${kpi.color || 'text-white'}`}>{kpi.value}</p>
               </motion.div>
@@ -929,7 +915,7 @@ function Login() {
 
         <div className="glass rounded-[3rem] p-10 md:p-14 max-w-md w-full border border-zinc-800/80 shadow-[0_0_80px_rgba(0,0,0,0.8)] relative z-10 backdrop-blur-2xl">
           <Link to="/" className="text-neon-blue hover:text-cyan-400 mb-8 inline-flex items-center gap-2 transition font-medium w-fit group">
-            <IconArrowLeft className="group-hover:-translate-x-1 transition-transform" /> Voltar
+            <FiArrowLeft className="group-hover:-translate-x-1 transition-transform" /> Voltar
           </Link>
 
           <div className="text-center mb-10">
@@ -947,7 +933,7 @@ function Login() {
                 className={`w-full bg-black/40 border rounded-2xl p-4 outline-none transition-all placeholder:text-gray-600 ${erro ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/50' : 'border-zinc-700/80 focus:border-neon-blue focus:ring-2 focus:ring-neon-blue/30'}`}
                 placeholder="admin@construtora.com"
               />
-              {erro && <p className="text-red-500 text-sm mt-2 font-medium flex items-center gap-1"><IconInfo size={16} /> {erro}</p>}
+              {erro && <p className="text-red-500 text-sm mt-2 font-medium flex items-center gap-1"><FiInfo size={16} /> {erro}</p>}
             </div>
 
             <div>
@@ -961,7 +947,7 @@ function Login() {
                   placeholder="••••••••"
                 />
                 <button type="button" onClick={() => setMostrarSenha(!mostrarSenha)} className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition p-2 hover:bg-white/5 rounded-full">
-                  {mostrarSenha ? <IconEyeOff size={20} /> : <IconEye size={20} />}
+                  {mostrarSenha ? <FiEyeOff size={20} /> : <FiEye size={20} />}
                 </button>
               </div>
             </div>
@@ -1003,7 +989,7 @@ function Login() {
               ) : (
                 <div className="text-center py-4">
                   <div className="w-16 h-16 bg-neon-green/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <IconMail className="text-3xl text-neon-green" />
+                    <FiMail className="text-3xl text-neon-green" />
                   </div>
                   <h2 className="text-2xl font-bold mb-2">E-mail enviado!</h2>
                   <p className="text-gray-300 text-sm">Verifique sua caixa de entrada e spam. O link expira em 15 minutos.</p>
@@ -1042,7 +1028,7 @@ function CadastroFake() {
         <div className="min-h-screen pt-28 p-4 flex items-center justify-center">
           <div className="glass rounded-[2rem] p-12 text-center border border-neon-green/50 shadow-[0_0_50px_rgba(0,255,133,0.2)] max-w-md w-full">
             <div className="w-20 h-20 bg-neon-green/20 rounded-full flex items-center justify-center mx-auto mb-6">
-              <IconCheck className="text-5xl text-neon-green" />
+              <FiCheck className="text-5xl text-neon-green" />
             </div>
             <h1 className="text-3xl font-bold text-white mb-4">Conta Criada!</h1>
             <p className="text-gray-300">Redirecionando pro Dashboard do investidor...</p>
@@ -1061,7 +1047,7 @@ function CadastroFake() {
 
         <div className="glass rounded-[3rem] p-10 md:p-14 max-w-md w-full border border-zinc-800/80 shadow-[0_0_80px_rgba(0,0,0,0.8)] relative z-10 backdrop-blur-2xl">
           <Link to="/login" className="text-neon-blue hover:text-cyan-400 mb-8 inline-flex items-center gap-2 transition font-medium w-fit group">
-            <IconArrowLeft className="group-hover:-translate-x-1 transition-transform" /> Voltar
+            <FiArrowLeft className="group-hover:-translate-x-1 transition-transform" /> Voltar
           </Link>
 
           <div className="text-center mb-10">
@@ -1083,7 +1069,7 @@ function CadastroFake() {
               <div className="relative">
                 <input type={mostrarSenha ? "text" : "password"} placeholder="Crie sua senha" value={senha} onChange={e => setSenha(e.target.value)} required className="w-full bg-black/40 border border-zinc-700/80 rounded-2xl p-4 outline-none focus:border-neon-blue focus:ring-2 focus:ring-neon-blue/30 transition-all placeholder:text-gray-600" />
                 <button type="button" onClick={() => setMostrarSenha(!mostrarSenha)} className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition p-2 hover:bg-white/5 rounded-full">
-                  {mostrarSenha ? <IconEyeOff size={20} /> : <IconEye size={20} />}
+                  {mostrarSenha ? <FiEyeOff size={20} /> : <FiEye size={20} />}
                 </button>
               </div>
             </div>
@@ -1157,7 +1143,7 @@ function QrCard({ obraId }: { obraId: number }) {
             onClick={handleDownloadApp}
             className="bg-neon-blue hover:bg-cyan-400 text-black font-bold py-4 px-8 rounded-full transition-all flex items-center gap-3 hover:shadow-[0_0_20px_rgba(0,217,255,0.4)]"
           >
-            <IconDownload size={20} /> Baixar App Mobile
+            <FiDownload size={20} /> Baixar App Mobile
           </button>
         </div>
 
