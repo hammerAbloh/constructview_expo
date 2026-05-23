@@ -184,7 +184,7 @@ export default function ObraDetalhe() {
                 <Tooltip
                   contentStyle={{ backgroundColor: '#111827', borderColor: '#374151', borderRadius: '8px', color: '#fff' }}
                   itemStyle={{ color: '#06b6d4', fontWeight: 'bold' }}
-                  formatter={(value: number) => [`${value}%`, 'Progresso']}
+                  formatter={(value: any) => [`${Number(value) || 0}%`, 'Progresso']}
                 />
                 <Area
                   type="monotone"
