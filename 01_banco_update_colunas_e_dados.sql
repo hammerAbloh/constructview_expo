@@ -1,0 +1,17 @@
+-- MAIS 5 CONSTRUTORAS
+INSERT INTO construtoras (nome, cnpj, logo_url, selo_destaque, nota_confiabilidade) VALUES
+('Cyrela Brazil Realty', '11.222.333/0001-44', 'https://i.imgur.com/logo-cyrela.png', 'Líder de Mercado', 9.8),
+('MRV Engenharia', '22.333.444/0001-55', 'https://i.imgur.com/logo-mrv.png', 'Custo-Benefício', 9.1),
+('Even Construtora', '33.444.555/0001-66', 'https://i.imgur.com/logo-even.png', 'Alto Padrão', 9.5),
+('Tecnisa S.A.', '44.555.666/0001-77', 'https://i.imgur.com/logo-tecnisa.png', 'Inovação', 9.3),
+('Gafisa S.A.', '55.666.777/0001-88', 'https://i.imgur.com/logo-gafisa.png', 'Tradição', 8.9);
+
+INSERT INTO obras (id_construtora, nome, endereco, bairro, cidade, cep, latitude, longitude, status, porcentagem_concluida, data_inicio_prevista, data_fim_prevista, descricao, imagem_capa_url, video_drone_url) VALUES
+ (4, 'Cyrela On The Park', 'Av. dos Autonomistas, 1400', 'Vila Yara', 'Osasco', '06020-010', -23.5310, -46.7890, 'Em andamento', 75, '2024-03-15', '2026-08-20', 'Torres residenciais com vista para parque.', 'https://i.imgur.com/obra-cyrela.jpg', 'https://videos.pexels.com/video-files/3130284/3130284-hd_1920_1080_30fps.mp4'),
+ (5, 'MRV Parque das Flores', 'Rua da Estação, 500', 'Centro', 'Osasco', '06010-000', -23.5360, -46.7780, 'Em andamento', 35, '2025-01-10', '2027-02-15', 'Condomínio clube completo.', 'https://i.imgur.com/obra-mrv.jpg', 'https://videos.pexels.com/video-files/1721294-hd_1920_1080_30fps.mp4'),
+ (6, 'Even Altto Itaim', 'Rua da Consolação, 3000', 'Itaim Bibi', 'São Paulo', '01416-000', -23.5850, -46.6700, 'Planejada', 10, '2026-05-01', '2029-11-30', 'Luxo e exclusividade.', 'https://i.imgur.com/obra-even.jpg', 'https://videos.pexels.com/video-files/2098989/2098989-hd_1920_1080_30fps.mp4'),
+ (7, 'Jardim Tecnisa', 'Av. Rebouças, 3500', 'Pinheiros', 'São Paulo', '05402-300', -23.5670, -46.6950, 'Em andamento', 55, '2024-08-01', '2026-12-01', 'Sustentável com selo Green Building.', 'https://i.imgur.com/obra-tecnisa.jpg', 'https://videos.pexels.com/video-files/1409899-hd_1920_1080_30fps.mp4'),
+ (8, 'Gafisa Square', 'Av. Paulista, 1000', 'Bela Vista', 'São Paulo', '01310-100', -23.5650, -46.6500, 'Concluída', 100, '2022-02-01', '2024-10-01', 'Comercial e residencial.', 'https://i.imgur.com/obra-gafisa.jpg', 'https://videos.pexels.com/video-files/3209239/3209239-hd_1920_1080_25fps.mp4'),
+ (1, 'Residencial Vida Nova', 'Rua Deputado Emílio Carlos, 800', 'Quitaúna', 'Osasco', '06180-020', -23.5200, -46.7600, 'Em andamento', 22, '2025-04-01', '2027-09-01', 'Minha Casa Minha Vida.', 'https://i.imgur.com/obra-lagge2.jpg', 'https://videos.pexels.com/video-files/1448735/1448735-hd_1920_1080_30fps.mp4'),
+ (2, 'Plano Urban Sky', 'Rua Dona Primitiva Vianco, 400', 'Centro', 'Osasco', '06016-000', -23.5340, -46.7720, 'Planejada', 8, '2026-02-01', '2028-07-01', 'Studio e 1 dorm.', 'https://i.imgur.com/obra-plano2.jpg', 'https://videos.pexels.com/video-files/856787/856787-hd_1920_1080_30fps.mp4'),
+ (3, 'Horizonte Business Tower', 'Av. Hilário Pereira de Souza, 492', 'Industrial Autonomistas', 'Osasco', '06010-170', -23.5450, -46.7950, 'Em andamento', 80, '2023-06-01', '2025-12-15', 'Salas comerciais de alto padrão.', 'https://i.imgur.com/obra-horizonte2.jpg', 'https://videos.pexels.com/video-files/3255275/3255275-hd_1920_1080_25fps.mp4');
