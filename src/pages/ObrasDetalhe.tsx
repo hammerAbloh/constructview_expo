@@ -26,7 +26,7 @@ export default function ObrasDetalhe() {
   useEffect(() => {
     const fetchObra = async () => {
       try {
-        const res = await axios.get(``process.env.REACT_APP_API_URL || "http://localhost:8080"`/api/obras/${id}`);
+        const res = await axios.get(`${process.env.REACT_APP_API_URL || "http://localhost:8080"}/api/obras/${id}`);
         setObra(res.data);
       } catch (err) {
         console.error('Erro ao buscar obra', err);
@@ -75,12 +75,12 @@ export default function ObrasDetalhe() {
         <Link to="/obras" className="text-cv-blue flex items-center gap-2 mb-6 w-fit">
           {(FiArrowLeft as any)({})} Voltar para Obras
         </Link>
-        
+
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-6">
             <h1 className="text-4xl font-bold">{obra.nome}</h1>
             <p className="text-gray-400">Responsável: {obra.construtora}</p>
-            
+
             {obra.fotos && obra.fotos.length > 0 ? (
               <img src={obra.fotos[0]} alt={obra.nome} className="w-full h-[400px] object-cover rounded-2xl shadow-lg border border-white/10" />
             ) : (
@@ -88,7 +88,7 @@ export default function ObrasDetalhe() {
                 Sem imagem disponível
               </div>
             )}
-            
+
             <div className="glass-card p-6">
               <h3 className="text-xl font-bold mb-4">Progresso Geral</h3>
               <div className="flex justify-between items-end mb-2">
@@ -100,7 +100,7 @@ export default function ObrasDetalhe() {
               </div>
             </div>
           </div>
-          
+
           <div className="space-y-6">
             <div className="glass-card p-6 shadow-glow-blue border-t-4 border-cv-blue">
               <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
@@ -125,7 +125,7 @@ export default function ObrasDetalhe() {
                 Baixar Relatório Completo
               </button>
             </div>
-            
+
             <div className="glass-card p-6">
               <h3 className="text-lg font-bold mb-4">Evolução Mensal</h3>
               <div className="h-48 w-full bg-cv-dark rounded-lg p-2">
@@ -134,14 +134,14 @@ export default function ObrasDetalhe() {
                     <AreaChart data={evolucaoData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                       <defs>
                         <linearGradient id="colorProgresso" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#00D1FF" stopOpacity={0.8}/>
-                          <stop offset="95%" stopColor="#00D1FF" stopOpacity={0}/>
+                          <stop offset="5%" stopColor="#00D1FF" stopOpacity={0.8} />
+                          <stop offset="95%" stopColor="#00D1FF" stopOpacity={0} />
                         </linearGradient>
                       </defs>
                       <CartesianGrid strokeDasharray="3 3" stroke="#333" vertical={false} />
                       <XAxis dataKey="mes" stroke="#888" fontSize={12} tickLine={false} axisLine={false} />
                       <YAxis stroke="#888" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `${value}%`} />
-                      <Tooltip 
+                      <Tooltip
                         contentStyle={{ backgroundColor: '#111827', borderColor: '#374151', borderRadius: '8px', color: '#fff' }}
                         itemStyle={{ color: '#00D1FF', fontWeight: 'bold' }}
                         formatter={(value: any) => [`${value}%`, 'Progresso']}
