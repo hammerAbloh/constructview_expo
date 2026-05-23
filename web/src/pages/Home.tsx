@@ -4,7 +4,6 @@ import QRCode from 'react-qr-code';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Link, useNavigate } from 'react-router-dom';
-import { api } from '../services/api';
 import { InfoWindowF } from '@react-google-maps/api';
 
 const containerStyle = { width: '100%', height: '500px', borderRadius: '1rem' };

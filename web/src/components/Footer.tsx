@@ -10,7 +10,7 @@ export default function Footer() {
           <h4 className="font-semibold text-white">PRODUTO</h4>
           <ul className="mt-3 space-y-2 text-sm text-gray-400">
             <li><a href="/obras" className="hover:text-cv-blue">Ver Demo</a></li>
-            <li><a href="#" className="hover:text-cv-blue">Baixar App Android</a></li>
+            <li><a href="/sobre" className="hover:text-cv-blue">Baixar App Android</a></li>
           </ul>
         </div>
         <div>
