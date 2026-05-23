@@ -16,7 +16,7 @@ export default function Register() {
   const validarCodigo = async () => {
     if (!codigo) return toast.error('Digite o código');
     try {
-      const res = await axios.post('http://localhost:8080/api/auth/validar-codigo', { codigo });
+      const res = await axios.post('`process.env.REACT_APP_API_URL || "http://localhost:8080"`/api/auth/validar-codigo', { codigo });
       setNome(res.data.nomeConstrutora);
       toast.success('Código válido!');
     } catch (err: any) {
@@ -28,7 +28,7 @@ export default function Register() {
     e.preventDefault();
     const role = isConstrutora ? 'CONSTRUTORA' : 'CLIENTE';
     try {
-      await axios.post('http://localhost:8080/api/auth/register', { nome, email, senha, role, codigoConvite: codigo });
+      await axios.post('`process.env.REACT_APP_API_URL || "http://localhost:8080"`/api/auth/register', { nome, email, senha, role, codigoConvite: codigo });
       toast.success('Conta criada! Faça login.');
       navigate('/gestor');
     } catch (err: any) {

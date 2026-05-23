@@ -16,7 +16,7 @@ export default function EsqueciSenha() {
     }
     setLoading(true);
     try {
-      await axios.post('http://localhost:8080/api/auth/forgot-password', { email });
+      await axios.post('`process.env.REACT_APP_API_URL || "http://localhost:8080"`/api/auth/forgot-password', { email });
       toast.success('Link enviado para o seu e-mail!');
       setEmail('');
     } catch (err) {

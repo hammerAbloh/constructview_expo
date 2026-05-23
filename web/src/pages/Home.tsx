@@ -22,7 +22,7 @@ export default function Home() {
 
   useEffect(() => {
     // Tenta buscar obras reais
-    fetch('http://localhost:8080/api/obras')
+    fetch('`process.env.REACT_APP_API_URL || "http://localhost:8080"`/api/obras')
       .then(res => res.json())
       .then(data => {
         if(Array.isArray(data) && data.length > 0) {

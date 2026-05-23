@@ -20,7 +20,7 @@ export default function AdminUsuarios() {
   const carregarUsuarios = async () => {
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:8080/api/admin/usuarios', {
+      const res = await fetch('`process.env.REACT_APP_API_URL || "http://localhost:8080"`/api/admin/usuarios', {
         headers: { 'Authorization': `Bearer ${api.getToken()}` }
       });
       if (res.ok) {

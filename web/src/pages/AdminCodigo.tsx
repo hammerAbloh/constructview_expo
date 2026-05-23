@@ -23,7 +23,7 @@ export default function AdminCodigo() {
 
   const carregarCodigos = async () => {
     try {
-      const res = await fetch('http://localhost:8080/api/admin/codigos', {
+      const res = await fetch('`process.env.REACT_APP_API_URL || "http://localhost:8080"`/api/admin/codigos', {
         headers: { 'Authorization': `Bearer ${api.getToken()}` }
       });
       if (res.ok) {
@@ -46,7 +46,7 @@ export default function AdminCodigo() {
     }
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:8080/api/admin/gerar-codigo', {
+      const res = await fetch('`process.env.REACT_APP_API_URL || "http://localhost:8080"`/api/admin/gerar-codigo', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${api.getToken()}` },
         body: JSON.stringify({ nomeConstrutora: nome })
