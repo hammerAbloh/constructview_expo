@@ -15,8 +15,8 @@ export default function Perfil() {
   useEffect(() => {
     if (user?.role === 'CONSTRUTORA' || user?.role === 'CLIENTE') {
       api.getObras().then(data => {
-        setObras(data);
-      });
+        setObras(Array.isArray(data) ? data : []);
+      }).catch(() => setObras([]));
     }
   }, [user]);
 

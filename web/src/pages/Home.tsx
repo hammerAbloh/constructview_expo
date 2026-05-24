@@ -22,14 +22,15 @@ export default function Home() {
 
   useEffect(() => {
     // Tenta buscar obras reais
-    fetch('`process.env.REACT_APP_API_URL || "http://localhost:8080"`/api/obras')
-      .then(res => res.json())
+    fetch(`${process.env.REACT_APP_API_URL || "http://localhost:8080"}/api/obras`)
+      .then(r => r.json())
       .then(data => {
-        if(Array.isArray(data) && data.length > 0) {
-          setObras(data);
-        }
+        setObras(Array.isArray(data) ? data : []);
       })
-      .catch(e => console.error("Erro ao buscar obras no mapa da home", e));
+      .catch(err => {
+        console.error('Erro ao buscar obras no mapa da home', err);
+        setObras([]);
+      });
   });
   
   const obrasFiltradas = obras.filter(o => {

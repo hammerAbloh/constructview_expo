@@ -33,10 +33,11 @@ export default function Obras() {
   useEffect(() => {
     const fetchObras = async () => {
       try {
-        const res = await axios.get('`process.env.REACT_APP_API_URL || "http://localhost:8080"`/api/obras');
-        setObras(res.data);
+        const res = await axios.get(`${process.env.REACT_APP_API_URL || "http://localhost:8080"}/api/obras`);
+        setObras(Array.isArray(res.data) ? res.data : []);
       } catch (err) {
         console.error('Erro ao buscar obras:', err);
+        setObras([]);
       }
     };
     fetchObras();
