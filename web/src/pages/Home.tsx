@@ -47,23 +47,23 @@ export default function Home() {
       <Header />
       <main className="max-w-7xl mx-auto px-6">
         {/* HERO */}
-        <section className="grid lg:grid-cols-2 gap-8 items-center mt-12">
-          <div>
-            <h1 className="text-5xl md:text-7xl font-extrabold leading-tight">
-              Transparência <br/> em <span className="text-cv-blue" style={{textShadow: '0 0 20px #00D1FF'}}>cada <br/> tijolo.</span>
+        <section className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center mt-12">
+          <div className="text-center lg:text-left">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold leading-tight">
+              Transparência <br className="hidden sm:block"/> em <span className="text-cv-blue" style={{textShadow: '0 0 20px #00D1FF'}}>cada <br className="hidden sm:block"/> tijolo.</span>
             </h1>
-            <p className="text-gray-400 mt-6 max-w-md">
+            <p className="text-gray-400 mt-6 max-w-md mx-auto lg:mx-0 text-sm sm:text-base">
               Acompanhe a evolução de empreendimentos imobiliários em tempo real com dados auditáveis e <b className="text-white">realidade aumentada</b>.
             </p>
-            <div className="flex gap-4 mt-8">
-              <Link to="/obras" className="bg-white text-cv-dark px-6 py-3 rounded-full font-semibold">Ver Obras</Link>
-              <a href="#mapa" className="bg-cv-gray text-white px-6 py-3 rounded-full font-semibold">Explorar Mapa</a>
+            <div className="flex flex-col sm:flex-row gap-4 mt-8 justify-center lg:justify-start">
+              <Link to="/obras" className="bg-white text-cv-dark px-6 py-3 rounded-full font-semibold text-center w-full sm:w-auto">Ver Obras</Link>
+              <a href="#mapa" className="bg-cv-gray text-white px-6 py-3 rounded-full font-semibold text-center w-full sm:w-auto">Explorar Mapa</a>
             </div>
           </div>
-          <div className="glass-card p-6">
-            <h3 className="text-xl font-bold">Obras na palma da mão</h3>
-            <p className="text-sm text-gray-400 mt-2">Baixe o app oficial para visualizar modelos 3D das obras diretamente no local com Realidade Aumentada.</p>
-            <div className="bg-white p-4 rounded-xl mt-6 w-fit">
+          <div className="glass-card p-6 w-full max-w-md mx-auto">
+            <h3 className="text-xl font-bold text-center lg:text-left">Obras na palma da mão</h3>
+            <p className="text-sm text-gray-400 mt-2 text-center lg:text-left">Baixe o app oficial para visualizar modelos 3D das obras diretamente no local com Realidade Aumentada.</p>
+            <div className="bg-white p-4 rounded-xl mt-6 mx-auto lg:mx-0 w-fit">
               <QRCode value="https://constructview.vercel.app/" size={128} />
             </div>
             <button className="bg-cv-blue text-cv-dark w-full mt-6 py-3 rounded-full font-bold shadow-glow-blue">Baixar App Mobile</button>
@@ -71,30 +71,30 @@ export default function Home() {
         </section>
 
         {/* STATS */}
-        <section className="grid md:grid-cols-3 gap-6 mt-20">
-          <div className="glass-card p-6">
-            <p className="text-sm text-gray-400">OBRAS MONITORADAS</p>
-            <p className="text-5xl font-bold text-cv-green mt-2">3+</p>
+        <section className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-20">
+          <div className="glass-card p-6 text-center sm:text-left">
+            <p className="text-xs sm:text-sm text-gray-400">OBRAS MONITORADAS</p>
+            <p className="text-4xl sm:text-5xl font-bold text-cv-green mt-2">3+</p>
           </div>
-          <div className="glass-card p-6">
-            <p className="text-sm text-gray-400">CONSTRUTORAS PARCEIRAS</p>
-            <p className="text-5xl font-bold text-cv-green mt-2">2+</p>
+          <div className="glass-card p-6 text-center sm:text-left">
+            <p className="text-xs sm:text-sm text-gray-400">CONSTRUTORAS PARCEIRAS</p>
+            <p className="text-4xl sm:text-5xl font-bold text-cv-green mt-2">2+</p>
           </div>
-          <div className="glass-card p-6">
-            <p className="text-sm text-gray-400">ACESSO LIVRE</p>
-            <p className="text-5xl font-bold text-cv-blue mt-2">100%</p>
+          <div className="glass-card p-6 text-center sm:text-left">
+            <p className="text-xs sm:text-sm text-gray-400">ACESSO LIVRE</p>
+            <p className="text-4xl sm:text-5xl font-bold text-cv-blue mt-2">100%</p>
           </div>
         </section>
 
         {/* MAPA */}
-        <section id="mapa" className="mt-20">
-          <div className="glass-card p-6">
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold">Mapa de Empreendimentos</h2>
-              <div className="flex gap-2 bg-cv-gray p-1 rounded-full">
-                <button onClick={() => setStatusFiltro('Todas')} className={`${statusFiltro === 'Todas' ? 'bg-cv-blue text-cv-dark' : 'text-gray-300'} px-4 py-1 rounded-full text-sm transition`}>Todas</button>
-                <button onClick={() => setStatusFiltro('Em Andamento')} className={`${statusFiltro === 'Em Andamento' ? 'bg-cv-blue text-cv-dark' : 'text-gray-300'} px-4 py-1 rounded-full text-sm transition`}>Em Andamento</button>
-                <button onClick={() => setStatusFiltro('Concluída')} className={`${statusFiltro === 'Concluída' ? 'bg-cv-blue text-cv-dark' : 'text-gray-300'} px-4 py-1 rounded-full text-sm transition`}>Concluída</button>
+        <section id="mapa" className="mt-20 mb-12">
+          <div className="glass-card p-4 sm:p-6">
+            <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
+              <h2 className="text-xl sm:text-2xl font-bold text-center sm:text-left">Mapa de Empreendimentos</h2>
+              <div className="flex flex-wrap justify-center gap-2 bg-cv-gray p-1 rounded-3xl sm:rounded-full w-full sm:w-auto">
+                <button onClick={() => setStatusFiltro('Todas')} className={`${statusFiltro === 'Todas' ? 'bg-cv-blue text-cv-dark' : 'text-gray-300'} px-4 py-1.5 rounded-full text-xs sm:text-sm transition flex-1 sm:flex-none whitespace-nowrap`}>Todas</button>
+                <button onClick={() => setStatusFiltro('Em Andamento')} className={`${statusFiltro === 'Em Andamento' ? 'bg-cv-blue text-cv-dark' : 'text-gray-300'} px-4 py-1.5 rounded-full text-xs sm:text-sm transition flex-1 sm:flex-none whitespace-nowrap`}>Em Andamento</button>
+                <button onClick={() => setStatusFiltro('Concluída')} className={`${statusFiltro === 'Concluída' ? 'bg-cv-blue text-cv-dark' : 'text-gray-300'} px-4 py-1.5 rounded-full text-xs sm:text-sm transition flex-1 sm:flex-none whitespace-nowrap`}>Concluída</button>
               </div>
             </div>
             {isLoaded? (

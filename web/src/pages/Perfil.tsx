@@ -44,10 +44,10 @@ export default function Perfil() {
                 Gere códigos de convite seguros para cadastrar novas Construtoras. Ao utilizarem o código, as construtoras criam sua própria Obra automaticamente.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/admin/codigo" className="bg-gradient-to-r from-cv-blue to-cyan-500 text-cv-dark px-6 py-3 rounded-lg font-bold hover:scale-105 transition-transform inline-block shadow-glow-blue text-center">
+                <Link to="/admin/codigo" className="bg-gradient-to-r from-cv-blue to-cyan-500 text-cv-dark px-6 py-3 rounded-lg font-bold hover:scale-105 transition-transform w-full sm:w-auto text-center shadow-glow-blue">
                   Gerar Novo Código de Convite
                 </Link>
-                <Link to="/admin/usuarios" className="bg-cv-dark border border-cv-blue text-cv-blue px-6 py-3 rounded-lg font-bold hover:bg-cv-blue/10 transition-colors inline-block text-center">
+                <Link to="/admin/usuarios" className="bg-cv-dark border border-cv-blue text-cv-blue px-6 py-3 rounded-lg font-bold hover:bg-cv-blue/10 transition-colors w-full sm:w-auto text-center">
                   Ver Acessos de Clientes e Usuários
                 </Link>
               </div>

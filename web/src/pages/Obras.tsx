@@ -55,7 +55,7 @@ export default function Obras() {
       <main className="flex-1 max-w-7xl mx-auto px-6 w-full">
         <h1 className="text-3xl font-bold mb-6">Empreendimentos</h1>
         
-        <div className="glass-card p-4 flex gap-4 mb-8">
+        <div className="glass-card p-4 flex flex-col md:flex-row gap-4 mb-8">
           <div className="flex-1 relative">
             {(FiSearch as any)({ className: "absolute left-4 top-3.5 text-gray-500" })}
             <input 
@@ -68,7 +68,7 @@ export default function Obras() {
           <select 
             value={statusFiltro} 
             onChange={e => setStatusFiltro(e.target.value)} 
-            className="bg-cv-gray rounded-full px-4 py-3 outline-none focus:ring-2 ring-cv-blue"
+            className="bg-cv-gray rounded-full px-4 py-3 outline-none focus:ring-2 ring-cv-blue w-full md:w-auto"
           >
             <option value="Todas">Todas</option>
             <option value="Em Andamento">Em Andamento</option>
