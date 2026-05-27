@@ -64,9 +64,16 @@ export default function Home() {
             <h3 className="text-xl font-bold text-center lg:text-left">Obras na palma da mão</h3>
             <p className="text-sm text-gray-400 mt-2 text-center lg:text-left">Baixe o app oficial para visualizar modelos 3D das obras diretamente no local com Realidade Aumentada.</p>
             <div className="bg-white p-4 rounded-xl mt-6 mx-auto lg:mx-0 w-fit">
-              <QRCode value="https://constructview.vercel.app/" size={128} />
+              <QRCode value="https://expo.dev/accounts/hammerabloh/projects/constructview-app/builds/68498913-3dd3-4a9c-b8aa-7ab7dc4011de" size={128} />
             </div>
-            <button className="bg-cv-blue text-cv-dark w-full mt-6 py-3 rounded-full font-bold shadow-glow-blue">Baixar App Mobile</button>
+            <a 
+              href="https://expo.dev/accounts/hammerabloh/projects/constructview-app/builds/68498913-3dd3-4a9c-b8aa-7ab7dc4011de"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block text-center bg-cv-blue text-cv-dark w-full mt-6 py-3 rounded-full font-bold shadow-glow-blue hover:scale-105 transition"
+            >
+              Instalar o AR App
+            </a>
           </div>
         </section>
 
